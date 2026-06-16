@@ -3,246 +3,244 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Небеса — Ритуальна Агенція</title>
+  <title>Небеса — Ритуальна Агенція · Дніпро</title>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--navy:#0D1B2A;--navy2:#152536;--gold:#B8955A;--gold2:#D4AF7A;--cream:#F5F3EF;--pearl:#E8E4DC;--text:#2C2C2C}
     html{scroll-behavior:smooth}
     body{font-family:'Georgia','Times New Roman',serif;background:var(--cream);color:var(--text);line-height:1.7}
 
+    /* TOP BAR */
+    .topbar{background:#060c12;padding:8px 48px;display:flex;justify-content:flex-end;align-items:center;border-bottom:1px solid rgba(184,149,90,.12)}
+    .topbar-phone{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+    .topbar-phone-icon{color:var(--gold);font-size:1rem}
+    .topbar-phone-num{font-family:'Georgia',serif;font-size:1.45rem;letter-spacing:.06em;color:#fff;font-weight:400;transition:color .2s}
+    .topbar-phone:hover .topbar-phone-num{color:var(--gold2)}
+    .topbar-label{font-family:system-ui,sans-serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,149,90,.6)}
+
     /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:10px 48px;background:rgba(10,16,24,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,149,90,.18)}
+    nav{position:sticky;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:10px 48px;background:rgba(10,16,24,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,149,90,.18)}
     .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links{display:flex;gap:26px;list-style:none}
     .nav-links a{color:rgba(232,228,220,.65);text-decoration:none;font-family:system-ui,sans-serif;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;transition:color .2s}
     .nav-links a:hover{color:var(--gold2)}
-    .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:9px 22px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
-    .nav-cta:hover{background:var(--gold);color:var(--navy)}
+    .nav-cta{background:var(--gold);border:none;color:var(--navy);padding:9px 22px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:700;text-decoration:none;transition:background .2s;white-space:nowrap}
+    .nav-cta:hover{background:var(--gold2)}
     .logo-wordmark{display:flex;flex-direction:column;line-height:1.1}
     .logo-sub{font-family:system-ui,sans-serif;font-size:.6rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:3px}
     .logo-name{font-family:'Georgia',serif;font-size:1.3rem;letter-spacing:.2em;color:var(--pearl);text-transform:uppercase}
     .nav-logo-dove{font-size:2rem;line-height:1}
 
+    /* BANNER */
+    .banner-section{background:#060c12;padding-top:0;overflow:hidden}
+    .banner-img{width:100%;display:block;max-height:320px;object-fit:cover;object-position:center 20%}
+
     /* HERO */
-    .hero{min-height:100vh;position:relative;overflow:hidden;display:grid;place-items:center;padding-top:80px;
+    .hero{min-height:90vh;position:relative;overflow:hidden;display:grid;place-items:center;padding:80px 24px 60px;
       background:radial-gradient(ellipse 70% 60% at 50% -10%,rgba(184,149,90,.14) 0%,transparent 65%),
                  linear-gradient(170deg,#0c1520 0%,#111e2d 50%,#0a1018 100%)}
     .hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
-      background:radial-gradient(ellipse 8% 55% at 50% 5%,rgba(255,240,180,.12) 0%,transparent 100%),
-                 radial-gradient(ellipse 25% 40% at 50% 0%,rgba(184,149,90,.08) 0%,transparent 80%)}
+      background:radial-gradient(ellipse 8% 55% at 50% 5%,rgba(255,240,180,.12) 0%,transparent 100%)}
     .hero-glow{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 35% at 50% 110%,rgba(184,149,90,.18) 0%,transparent 70%);pointer-events:none}
-
-    /* BANNER SECTION */
-    .banner-section{background:#060c12;padding:0;overflow:hidden}
-    .banner-upload-wrap{position:relative;width:100%;background:#060c12;min-height:180px;display:flex;align-items:center;justify-content:center}
-    .banner-img{width:100%;display:block;max-height:320px;object-fit:cover;object-position:center top}
-    .banner-img.hidden{display:none}
-    .banner-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px 24px;width:100%}
-    .banner-placeholder.hidden{display:none}
-    .banner-placeholder-text{font-family:system-ui,sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,149,90,.4)}
-    .banner-upload-btn{background:transparent;border:1px solid rgba(184,149,90,.4);color:var(--gold);font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:10px 22px;border-radius:2px;cursor:pointer;transition:background .2s}
-    .banner-upload-btn:hover{background:rgba(184,149,90,.1)}
-    .banner-caption{background:#060c12;text-align:center;padding:22px 24px 28px;border-top:1px solid rgba(184,149,90,.08)}
-    .banner-caption-text{font-family:'Georgia',serif;font-size:1rem;letter-spacing:.18em;color:rgba(232,228,220,.28);text-transform:uppercase}
-    .banner-change-btn{position:absolute;bottom:12px;right:16px;background:rgba(6,12,18,.75);border:1px solid rgba(184,149,90,.3);color:var(--gold);font-family:system-ui,sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 13px;border-radius:2px;cursor:pointer;opacity:0;transition:opacity .2s}
-    .banner-upload-wrap:hover .banner-change-btn{opacity:1}
-
-    .hero-content{position:relative;z-index:1;text-align:center;padding:0 24px;max-width:860px;opacity:0;animation:fadeUp .9s .2s ease forwards}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-    /* BIG HERO LOGO */
-    .hero-logo-wrap{margin-bottom:32px;display:flex;justify-content:center;align-items:center;gap:22px}
-    .hero-logo-svg{width:160px;height:160px;filter:drop-shadow(0 0 40px rgba(184,149,90,.6)) drop-shadow(0 0 80px rgba(184,149,90,.25))}
-    .hero-logo-text .hl-sub{font-family:system-ui,sans-serif;font-size:.75rem;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:6px}
-    .hero-logo-text .hl-name{font-family:'Georgia',serif;font-size:3rem;letter-spacing:.25em;color:#fff;text-transform:uppercase;display:block;text-shadow:0 0 40px rgba(184,149,90,.4),0 2px 20px rgba(0,0,0,.5);line-height:1}
-
-    .hero-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 22px;max-width:340px}
-    .hero-divider::before,.hero-divider::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(184,149,90,.45))}
-    .hero-divider::after{background:linear-gradient(to left,transparent,rgba(184,149,90,.45))}
-    .hero-divider span{color:var(--gold);font-size:.6rem;letter-spacing:.25em;font-family:system-ui,sans-serif;text-transform:uppercase;white-space:nowrap}
-
-    h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:400;letter-spacing:.04em;color:#fff;line-height:1.15;margin-bottom:18px;text-shadow:0 2px 24px rgba(0,0,0,.6)}
+    .hero-content{position:relative;z-index:1;text-align:center;max-width:820px;opacity:0;animation:fadeUp .9s .1s ease forwards}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .hero-logo-wrap{margin-bottom:28px;display:flex;justify-content:center;align-items:center;gap:20px}
+    .hero-logo-text .hl-sub{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:5px}
+    .hero-logo-text .hl-name{font-family:'Georgia',serif;font-size:2.8rem;letter-spacing:.24em;color:#fff;text-transform:uppercase;display:block;text-shadow:0 0 40px rgba(184,149,90,.35)}
+    .hero-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 20px;max-width:340px}
+    .hero-divider::before,.hero-divider::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(184,149,90,.4))}
+    .hero-divider::after{background:linear-gradient(to left,transparent,rgba(184,149,90,.4))}
+    .hero-divider span{color:var(--gold);font-size:.6rem;letter-spacing:.22em;font-family:system-ui,sans-serif;text-transform:uppercase;white-space:nowrap}
+    h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:400;letter-spacing:.04em;color:#fff;line-height:1.15;margin-bottom:16px;text-shadow:0 2px 24px rgba(0,0,0,.6)}
     h1 em{font-style:normal;color:var(--gold2)}
-    .hero-sub{font-family:system-ui,sans-serif;font-size:.96rem;color:rgba(255,255,255,.6);line-height:1.9;max-width:560px;margin:0 auto 40px}
-    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-    .btn-primary{background:var(--gold);color:var(--navy);padding:15px 40px;border:none;border-radius:2px;font-family:system-ui,sans-serif;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:700;transition:background .2s,transform .15s}
+    .hero-sub{font-family:system-ui,sans-serif;font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.9;max-width:540px;margin:0 auto 36px}
+    .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--gold);color:var(--navy);padding:15px 40px;border:none;border-radius:2px;font-family:system-ui,sans-serif;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:700;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
     .btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}
-    .btn-secondary{background:transparent;color:#fff;padding:15px 40px;border:1px solid rgba(255,255,255,.35);border-radius:2px;font-family:system-ui,sans-serif;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s}
+    .btn-secondary{background:transparent;color:#fff;padding:15px 40px;border:1px solid rgba(255,255,255,.32);border-radius:2px;font-family:system-ui,sans-serif;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s;text-decoration:none;display:inline-block}
     .btn-secondary:hover{border-color:#fff}
-    .hero-phone{margin-top:32px;font-family:system-ui,sans-serif;font-size:.8rem;color:rgba(255,255,255,.32);letter-spacing:.06em}
-    .hero-phone a{color:rgba(255,255,255,.68);text-decoration:none;font-size:.98rem}
-    .hero-phone a:hover{color:var(--gold)}
-    .hero-badges{display:flex;gap:22px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-    .hero-badge{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:6px}
+    .hero-phone-big{margin-top:28px}
+    .hero-phone-big a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:'Georgia',serif;font-size:1.9rem;letter-spacing:.04em;text-shadow:0 0 30px rgba(184,149,90,.3);transition:color .2s}
+    .hero-phone-big a:hover{color:var(--gold2)}
+    .hero-phone-big .ph-label{font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,149,90,.55);display:block;margin-bottom:4px}
+    .hero-badges{display:flex;gap:20px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+    .hero-badge{font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:5px}
     .hero-badge::before{content:'✓';color:var(--gold)}
 
     /* PROMISE */
-    .promise-band{background:var(--navy2);padding:38px 48px;display:flex;justify-content:center;border-bottom:1px solid rgba(184,149,90,.1)}
+    .promise-band{background:var(--navy2);padding:36px 48px;display:flex;justify-content:center;border-bottom:1px solid rgba(184,149,90,.1)}
     .promise-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;width:100%}
-    .promise-item{display:flex;align-items:center;gap:14px;padding:0 24px;border-right:1px solid rgba(184,149,90,.14)}
+    .promise-item{display:flex;align-items:center;gap:13px;padding:0 22px;border-right:1px solid rgba(184,149,90,.14)}
     .promise-item:last-child{border-right:none}
-    .promise-icon{font-size:1.2rem;flex-shrink:0}
+    .promise-icon{font-size:1.15rem;flex-shrink:0}
     .promise-text strong{display:block;color:var(--pearl);font-family:system-ui,sans-serif;font-size:.82rem;margin-bottom:2px}
-    .promise-text span{font-family:system-ui,sans-serif;font-size:.72rem;color:rgba(232,228,220,.36)}
+    .promise-text span{font-family:system-ui,sans-serif;font-size:.71rem;color:rgba(232,228,220,.36)}
 
-    section{padding:88px 48px}
+    section{padding:80px 48px}
     .section-tag{font-family:system-ui,sans-serif;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
-    h2{font-size:clamp(1.7rem,3.8vw,2.55rem);font-weight:400;letter-spacing:.03em;line-height:1.22;color:var(--navy);margin-bottom:14px}
-    .section-lead{font-family:system-ui,sans-serif;font-size:.93rem;color:#666;max-width:560px;line-height:1.88}
+    h2{font-size:clamp(1.7rem,3.8vw,2.5rem);font-weight:400;letter-spacing:.03em;line-height:1.22;color:var(--navy);margin-bottom:14px}
+    .section-lead{font-family:system-ui,sans-serif;font-size:.92rem;color:#666;max-width:560px;line-height:1.88}
 
     /* ABOUT */
     .about{background:#fff}
     .about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-    .about-highlight{background:var(--cream);border-left:3px solid var(--gold);padding:20px 24px;font-family:system-ui,sans-serif;font-size:.88rem;color:#555;line-height:1.78;font-style:italic;margin-top:24px}
-    .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .stat-box{background:var(--cream);padding:28px 20px;text-align:center;border-bottom:2px solid transparent;transition:border-color .2s}
+    .about-highlight{background:var(--cream);border-left:3px solid var(--gold);padding:18px 22px;font-family:system-ui,sans-serif;font-size:.87rem;color:#555;line-height:1.78;font-style:italic;margin-top:22px}
+    .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .stat-box{background:var(--cream);padding:26px 18px;text-align:center;border-bottom:2px solid transparent;transition:border-color .2s}
     .stat-box:hover{border-color:var(--gold)}
-    .stat-num{font-size:2rem;color:var(--navy);display:block;margin-bottom:4px}
-    .stat-label{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#aaa}
+    .stat-num{font-size:1.9rem;color:var(--navy);display:block;margin-bottom:4px}
+    .stat-label{font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#aaa}
 
     /* SERVICES */
     .services{background:var(--cream)}
-    .services-header{text-align:center;margin-bottom:52px}
+    .services-header{text-align:center;margin-bottom:48px}
     .services-header .section-lead{margin:0 auto}
     .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:0 auto}
-    .service-card{background:#fff;padding:36px 30px;border-bottom:3px solid transparent;transition:border-color .25s,transform .2s,box-shadow .2s}
+    .service-card{background:#fff;padding:32px 26px;border-bottom:3px solid transparent;transition:border-color .25s,transform .2s,box-shadow .2s}
     .service-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,27,42,.06)}
-    .service-icon{font-size:1.55rem;margin-bottom:14px;display:block;padding-bottom:14px;border-bottom:1px solid rgba(184,149,90,.18)}
-    .service-card h3{font-size:.97rem;font-weight:400;letter-spacing:.05em;color:var(--navy);margin-bottom:8px}
-    .service-card p{font-family:system-ui,sans-serif;font-size:.8rem;color:#999;line-height:1.75}
+    .service-icon{font-size:1.5rem;margin-bottom:12px;display:block;padding-bottom:12px;border-bottom:1px solid rgba(184,149,90,.18)}
+    .service-card h3{font-size:.95rem;font-weight:400;letter-spacing:.05em;color:var(--navy);margin-bottom:7px}
+    .service-card p{font-family:system-ui,sans-serif;font-size:.79rem;color:#999;line-height:1.72}
+    .service-card a{color:var(--gold);text-decoration:none;font-weight:600}
+    .service-card a:hover{color:var(--gold2)}
+
+    /* MONUMENTS */
+    .monuments{background:#fff}
+    .monuments-inner{max-width:1100px;margin:0 auto}
+    .monuments-header{margin-bottom:40px}
+    .monuments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .monument-card{background:var(--cream);overflow:hidden;border:1px solid rgba(13,27,42,.07);transition:transform .2s,box-shadow .2s}
+    .monument-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,27,42,.1)}
+    .monument-img{width:100%;height:220px;object-fit:cover;display:block;filter:grayscale(15%)}
+    .monument-info{padding:16px 18px}
+    .monument-info h3{font-size:.92rem;font-weight:400;color:var(--navy);letter-spacing:.04em;margin-bottom:4px}
+    .monument-info p{font-family:system-ui,sans-serif;font-size:.75rem;color:#999;line-height:1.6}
 
     /* CREMATION */
-    .cremation-section{background:var(--navy);padding:88px 48px}
+    .cremation-section{background:var(--navy);padding:80px 48px}
     .cremation-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
     .cremation-section h2{color:var(--pearl)}
     .cremation-section .section-lead{color:rgba(232,228,220,.55)}
-    .price-badge{display:inline-flex;align-items:baseline;gap:6px;background:rgba(184,149,90,.12);border:1px solid rgba(184,149,90,.3);padding:14px 24px;margin:24px 0;border-radius:2px}
+    .price-badge{display:inline-flex;align-items:baseline;gap:6px;background:rgba(184,149,90,.12);border:1px solid rgba(184,149,90,.3);padding:13px 22px;margin:22px 0;border-radius:2px}
     .price-from{font-family:system-ui,sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-    .price-num{font-size:2.4rem;color:var(--gold2);letter-spacing:.02em}
+    .price-num{font-size:2.2rem;color:var(--gold2);letter-spacing:.02em}
     .price-currency{font-family:system-ui,sans-serif;font-size:.9rem;color:var(--gold)}
-    .cremation-steps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
-    .cr-step{display:flex;gap:16px}
-    .cr-num{font-size:.7rem;font-family:system-ui,sans-serif;color:var(--gold);letter-spacing:.1em;min-width:24px;padding-top:3px}
-    .cr-info strong{display:block;color:var(--pearl);font-family:system-ui,sans-serif;font-size:.86rem;font-weight:500;margin-bottom:2px}
-    .cr-info span{font-family:system-ui,sans-serif;font-size:.78rem;color:rgba(232,228,220,.42);line-height:1.6}
+    .cremation-steps{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+    .cr-step{display:flex;gap:14px}
+    .cr-num{font-size:.7rem;font-family:system-ui,sans-serif;color:var(--gold);letter-spacing:.1em;min-width:22px;padding-top:3px}
+    .cr-info strong{display:block;color:var(--pearl);font-family:system-ui,sans-serif;font-size:.85rem;font-weight:500;margin-bottom:2px}
+    .cr-info span{font-family:system-ui,sans-serif;font-size:.77rem;color:rgba(232,228,220,.4);line-height:1.6}
     .candle-wrap{display:flex;align-items:center;justify-content:center;position:relative}
     .candle-art{display:flex;flex-direction:column;align-items:center}
-    .ca-flame{width:38px;height:56px;background:radial-gradient(ellipse at 50% 90%,#fff9e6 0%,#ffe066 30%,var(--gold) 65%,transparent 100%);border-radius:50% 50% 30% 30%;animation:flicker 2s ease-in-out infinite alternate;filter:blur(.4px);box-shadow:0 0 40px rgba(184,149,90,.6),0 0 80px rgba(184,149,90,.25)}
-    .ca-wick{width:3px;height:18px;background:linear-gradient(to bottom,var(--gold),#555)}
-    .ca-body{width:68px;height:200px;background:linear-gradient(to bottom,#e0dbd4,#c0bbb3);border-radius:4px 4px 2px 2px;box-shadow:inset -7px 0 14px rgba(0,0,0,.18),inset 3px 0 7px rgba(255,255,255,.28)}
-    .ca-glow{position:absolute;width:220px;height:220px;top:-90px;background:radial-gradient(circle,rgba(184,149,90,.22) 0%,transparent 70%);pointer-events:none}
+    .ca-flame{width:36px;height:52px;background:radial-gradient(ellipse at 50% 90%,#fff9e6 0%,#ffe066 30%,var(--gold) 65%,transparent 100%);border-radius:50% 50% 30% 30%;animation:flicker 2s ease-in-out infinite alternate;filter:blur(.4px);box-shadow:0 0 40px rgba(184,149,90,.6),0 0 80px rgba(184,149,90,.25)}
+    .ca-wick{width:3px;height:16px;background:linear-gradient(to bottom,var(--gold),#555)}
+    .ca-body{width:64px;height:190px;background:linear-gradient(to bottom,#e0dbd4,#c0bbb3);border-radius:4px 4px 2px 2px;box-shadow:inset -6px 0 12px rgba(0,0,0,.18),inset 3px 0 6px rgba(255,255,255,.28)}
+    .ca-glow{position:absolute;width:200px;height:200px;top:-80px;background:radial-gradient(circle,rgba(184,149,90,.22) 0%,transparent 70%);pointer-events:none}
     @keyframes flicker{0%{transform:scaleX(1) scaleY(1) rotate(-1deg)}50%{transform:scaleX(.88) scaleY(1.1) rotate(1deg)}100%{transform:scaleX(1.1) scaleY(.93) rotate(0)}}
 
     /* WHY */
     .why{background:var(--cream)}
     .why-inner{max-width:1100px;margin:0 auto}
-    .why-header{margin-bottom:50px}
-    .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-    .why-item{display:flex;gap:16px;padding:26px;background:#fff;border-left:2px solid transparent;transition:border-color .2s}
+    .why-header{margin-bottom:44px}
+    .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .why-item{display:flex;gap:15px;padding:24px;background:#fff;border-left:2px solid transparent;transition:border-color .2s}
     .why-item:hover{border-color:var(--gold)}
-    .why-item-icon{font-size:1.3rem;flex-shrink:0}
-    .why-item h3{font-size:.93rem;font-weight:400;letter-spacing:.05em;color:var(--navy);margin-bottom:5px}
-    .why-item p{font-family:system-ui,sans-serif;font-size:.8rem;color:#999;line-height:1.7}
+    .why-item-icon{font-size:1.25rem;flex-shrink:0}
+    .why-item h3{font-size:.92rem;font-weight:400;letter-spacing:.05em;color:var(--navy);margin-bottom:5px}
+    .why-item p{font-family:system-ui,sans-serif;font-size:.79rem;color:#999;line-height:1.7}
 
     /* PACKAGES */
     .packages{background:#fff}
-    .packages-header{text-align:center;margin-bottom:52px}
+    .packages-header{text-align:center;margin-bottom:48px}
     .packages-header .section-lead{margin:0 auto}
-    .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1060px;margin:0 auto}
-    .pkg-card{background:var(--cream);padding:38px 28px;border:1px solid rgba(13,27,42,.07);position:relative;transition:box-shadow .2s,transform .2s}
+    .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto}
+    .pkg-card{background:var(--cream);padding:36px 26px;border:1px solid rgba(13,27,42,.07);position:relative;transition:box-shadow .2s,transform .2s}
     .pkg-card:hover{box-shadow:0 14px 44px rgba(13,27,42,.09);transform:translateY(-4px)}
     .pkg-card.featured{background:var(--navy);border-color:var(--gold);transform:scale(1.03)}
     .pkg-card.featured:hover{transform:scale(1.03) translateY(-4px)}
     .pkg-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-family:system-ui,sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;white-space:nowrap;font-weight:700}
-    .pkg-name{font-size:.7rem;font-family:system-ui,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
-    .pkg-card h3{font-size:1.15rem;font-weight:400;color:var(--navy);margin-bottom:5px}
+    .pkg-name{font-size:.68rem;font-family:system-ui,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
+    .pkg-card h3{font-size:1.1rem;font-weight:400;color:var(--navy);margin-bottom:5px}
     .pkg-card.featured h3{color:var(--pearl)}
-    .pkg-desc{font-family:system-ui,sans-serif;font-size:.78rem;color:#aaa;margin-bottom:16px;line-height:1.55}
-    .pkg-card.featured .pkg-desc{color:rgba(232,228,220,.4)}
-    .pkg-price{font-size:1.45rem;color:var(--gold);margin-bottom:18px;letter-spacing:.02em}
-    .pkg-price span{font-family:system-ui,sans-serif;font-size:.8rem;color:#aaa}
+    .pkg-desc{font-family:system-ui,sans-serif;font-size:.77rem;color:#aaa;margin-bottom:16px;line-height:1.55}
+    .pkg-card.featured .pkg-desc{color:rgba(232,228,220,.38)}
+    .pkg-price{font-size:1.4rem;color:var(--gold);margin-bottom:16px;letter-spacing:.02em}
+    .pkg-price span{font-family:system-ui,sans-serif;font-size:.78rem;color:#aaa}
     .pkg-card.featured .pkg-price{color:var(--gold2)}
-    .pkg-features{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:7px}
-    .pkg-features li{font-family:system-ui,sans-serif;font-size:.79rem;color:#666;display:flex;gap:9px;align-items:flex-start;line-height:1.5}
-    .pkg-card.featured .pkg-features li{color:rgba(232,228,220,.6)}
+    .pkg-features{list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:7px}
+    .pkg-features li{font-family:system-ui,sans-serif;font-size:.78rem;color:#666;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+    .pkg-card.featured .pkg-features li{color:rgba(232,228,220,.58)}
     .pkg-features li::before{content:'–';color:var(--gold);flex-shrink:0}
-    .pkg-btn{width:100%;padding:13px;border-radius:2px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.77rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:all .2s}
+    .pkg-btn{width:100%;padding:13px;border-radius:2px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:all .2s;display:block;text-align:center;text-decoration:none}
     .pkg-btn-outline{background:transparent;border:1px solid rgba(13,27,42,.2);color:var(--navy)}
     .pkg-btn-outline:hover{border-color:var(--gold);color:var(--gold)}
     .pkg-btn-gold{background:var(--gold);border:none;color:var(--navy)}
     .pkg-btn-gold:hover{background:var(--gold2)}
 
     /* TESTIMONIALS */
-    .testimonials{background:var(--navy2);padding:88px 48px}
-    .testi-header{text-align:center;margin-bottom:52px}
+    .testimonials{background:var(--navy2);padding:80px 48px}
+    .testi-header{text-align:center;margin-bottom:44px}
     .testi-header h2{color:var(--pearl)}
-    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1100px;margin:0 auto}
-    .testi-card{background:rgba(255,255,255,.04);border:1px solid rgba(184,149,90,.12);padding:30px;transition:border-color .2s}
-    .testi-card:hover{border-color:rgba(184,149,90,.35)}
-    .testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:12px;letter-spacing:2px}
-    .testi-quote{font-size:2rem;color:var(--gold);opacity:.35;line-height:1;margin-bottom:12px;font-family:Georgia,serif}
-    .testi-card p{font-family:system-ui,sans-serif;font-size:.84rem;color:rgba(232,228,220,.52);line-height:1.82;margin-bottom:20px}
-    .testi-author{display:flex;align-items:center;gap:11px}
-    .testi-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--navy));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;font-size:.72rem;color:var(--pearl);font-weight:600}
-    .testi-name{font-family:system-ui,sans-serif;font-size:.79rem;color:var(--pearl)}
-    .testi-meta{font-family:system-ui,sans-serif;font-size:.7rem;color:rgba(232,228,220,.28)}
+    .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
+    .testi-card{background:rgba(255,255,255,.04);border:1px solid rgba(184,149,90,.12);padding:26px}
+    .testi-card:hover{border-color:rgba(184,149,90,.3)}
+    .testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:10px;letter-spacing:2px}
+    .testi-quote{font-size:1.8rem;color:var(--gold);opacity:.3;line-height:1;margin-bottom:10px;font-family:Georgia,serif}
+    .testi-card p{font-family:system-ui,sans-serif;font-size:.83rem;color:rgba(232,228,220,.5);line-height:1.78;margin-bottom:16px}
+    .testi-author{display:flex;align-items:center;gap:10px}
+    .testi-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--navy));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;font-size:.7rem;color:var(--pearl);font-weight:600}
+    .testi-name{font-family:system-ui,sans-serif;font-size:.77rem;color:var(--pearl)}
+    .testi-meta{font-family:system-ui,sans-serif;font-size:.68rem;color:rgba(232,228,220,.26)}
 
     /* REVIEW FORM */
-    .review-form-section{background:var(--navy);padding:64px 48px}
-    .review-form-inner{max-width:700px;margin:0 auto}
-    .review-form-section h3{color:var(--pearl);font-size:1.4rem;font-weight:400;letter-spacing:.05em;margin-bottom:8px}
-    .rfs-lead{font-family:system-ui,sans-serif;font-size:.84rem;color:rgba(232,228,220,.42);margin-bottom:30px}
-    .rf-group{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}
-    .rf-group label{font-family:system-ui,sans-serif;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,149,90,.7)}
-    .rf-group input,.rf-group textarea{background:rgba(255,255,255,.05);border:1px solid rgba(184,149,90,.2);padding:12px 14px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.87rem;color:var(--pearl);outline:none;transition:border-color .2s;resize:vertical}
-    .rf-group input::placeholder,.rf-group textarea::placeholder{color:rgba(232,228,220,.2)}
+    .review-form-section{background:var(--navy);padding:56px 48px}
+    .review-form-inner{max-width:680px;margin:0 auto}
+    .review-form-section h3{color:var(--pearl);font-size:1.35rem;font-weight:400;letter-spacing:.05em;margin-bottom:6px}
+    .rfs-lead{font-family:system-ui,sans-serif;font-size:.83rem;color:rgba(232,228,220,.4);margin-bottom:28px}
+    .rf-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+    .rf-group label{font-family:system-ui,sans-serif;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,149,90,.65)}
+    .rf-group input,.rf-group textarea{background:rgba(255,255,255,.05);border:1px solid rgba(184,149,90,.18);padding:11px 13px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.86rem;color:var(--pearl);outline:none;transition:border-color .2s;resize:vertical}
+    .rf-group input::placeholder,.rf-group textarea::placeholder{color:rgba(232,228,220,.18)}
     .rf-group input:focus,.rf-group textarea:focus{border-color:var(--gold)}
-    .rf-group textarea{min-height:110px}
-    .rf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .rf-stars-row{display:flex;gap:7px;margin-bottom:16px}
-    .rf-star{font-size:1.5rem;cursor:pointer;color:rgba(184,149,90,.25);transition:color .15s,transform .12s;user-select:none}
-    .rf-star.active,.rf-star:hover~.rf-star{color:var(--gold)}
-    .rf-star.active{color:var(--gold);transform:scale(1.12)}
-    .rf-submit{background:var(--gold);color:var(--navy);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;transition:background .2s;width:100%}
+    .rf-group textarea{min-height:100px}
+    .rf-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    .rf-stars-row{display:flex;gap:7px;margin-bottom:14px}
+    .rf-star{font-size:1.45rem;cursor:pointer;color:rgba(184,149,90,.22);transition:color .15s;user-select:none}
+    .rf-star.active{color:var(--gold);transform:scale(1.1)}
+    .rf-submit{background:var(--gold);color:var(--navy);border:none;padding:13px 32px;border-radius:2px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.77rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:background .2s;width:100%}
     .rf-submit:hover{background:var(--gold2)}
-    .rf-success{display:none;background:rgba(184,149,90,.1);border:1px solid rgba(184,149,90,.3);padding:18px 22px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.88rem;color:var(--gold2);text-align:center;margin-top:14px}
-    .rf-note{font-family:system-ui,sans-serif;font-size:.72rem;color:rgba(232,228,220,.2);text-align:center;margin-top:10px}
+    .rf-success{display:none;background:rgba(184,149,90,.1);border:1px solid rgba(184,149,90,.28);padding:16px 20px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.86rem;color:var(--gold2);text-align:center;margin-top:12px}
+    .rf-note{font-family:system-ui,sans-serif;font-size:.7rem;color:rgba(232,228,220,.18);text-align:center;margin-top:9px}
 
     /* CONTACT */
     .contact{background:var(--cream)}
-    .contact-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:start}
-    .contact-info .section-lead{margin-bottom:28px}
-    .contact-detail{display:flex;flex-direction:column;gap:16px}
+    .contact-inner{max-width:760px;margin:0 auto}
+    .contact-detail{display:flex;flex-direction:column;gap:16px;margin-top:28px}
     .cd-item{display:flex;gap:13px;align-items:flex-start}
     .cd-icon{font-size:.9rem;color:var(--gold);flex-shrink:0;padding-top:3px}
-    .cd-item strong{display:block;font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin-bottom:1px}
-    .cd-item span,.cd-item a{font-family:system-ui,sans-serif;font-size:.88rem;color:#777;text-decoration:none}
+    .cd-item strong{display:block;font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin-bottom:1px}
+    .cd-item a{font-family:system-ui,sans-serif;font-size:.88rem;color:#777;text-decoration:none}
     .cd-item a:hover{color:var(--gold)}
-    .free-consult{margin-top:22px;background:var(--navy);color:var(--pearl);padding:14px 18px;font-family:system-ui,sans-serif;font-size:.8rem;display:flex;align-items:center;gap:10px;border-left:3px solid var(--gold)}
-    .contact-form{display:flex;flex-direction:column;gap:13px}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-    .form-group{display:flex;flex-direction:column;gap:5px}
-    .form-group label{font-family:system-ui,sans-serif;font-size:.67rem;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);opacity:.55}
-    .form-group input,.form-group textarea,.form-group select{background:#fff;border:1px solid rgba(13,27,42,.11);padding:12px 13px;border-radius:2px;font-family:system-ui,sans-serif;font-size:.87rem;color:var(--text);outline:none;transition:border-color .2s;appearance:none}
-    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold)}
-    .form-group textarea{resize:vertical;min-height:88px}
-    .form-note{font-family:system-ui,sans-serif;font-size:.72rem;color:#bbb;line-height:1.6}
-    .form-submit{background:var(--navy);color:var(--pearl);border:none;padding:14px 32px;border-radius:2px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;transition:background .2s}
-    .form-submit:hover{background:#1a3050}
+    .cd-item span{font-family:system-ui,sans-serif;font-size:.88rem;color:#777}
+    .contact-phone-big{margin-top:32px;background:var(--navy);padding:28px 32px;display:flex;align-items:center;gap:20px;border-left:4px solid var(--gold)}
+    .contact-phone-big a{text-decoration:none;color:#fff;font-family:'Georgia',serif;font-size:2rem;letter-spacing:.04em;transition:color .2s}
+    .contact-phone-big a:hover{color:var(--gold2)}
+    .cpb-label{font-family:system-ui,sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+
+    /* SOCIAL BAR */
+    .social-bar{background:var(--navy2);padding:28px 48px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(184,149,90,.1)}
+    .social-link{display:flex;align-items:center;gap:9px;text-decoration:none;color:rgba(232,228,220,.5);font-family:system-ui,sans-serif;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;padding:8px 16px;border:1px solid rgba(184,149,90,.15);border-radius:2px}
+    .social-link:hover{color:var(--gold);border-color:rgba(184,149,90,.4)}
 
     /* FOOTER */
-    footer{background:#060c12;padding:38px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+    footer{background:#060c12;padding:32px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
     .footer-logo{display:flex;align-items:center;gap:10px}
-    .footer-logo svg{width:34px;height:34px;opacity:.45}
-    .footer-logo-text{font-family:Georgia,serif;font-size:1rem;letter-spacing:.22em;color:var(--pearl);opacity:.38;text-transform:uppercase}
-    .footer-copy{font-family:system-ui,sans-serif;font-size:.72rem;color:rgba(232,228,220,.18);text-align:center}
-    .footer-links{display:flex;gap:22px}
-    .footer-links a{font-family:system-ui,sans-serif;font-size:.72rem;color:rgba(232,228,220,.22);text-decoration:none;letter-spacing:.05em;transition:color .2s}
-    .footer-links a:hover{color:var(--gold)}
+    .footer-logo-text{font-family:Georgia,serif;font-size:.95rem;letter-spacing:.22em;color:var(--pearl);opacity:.35;text-transform:uppercase}
+    .footer-copy{font-family:system-ui,sans-serif;font-size:.7rem;color:rgba(232,228,220,.16);text-align:center}
 
-    .hotline-float{position:fixed;bottom:28px;right:28px;z-index:200;background:var(--gold);color:var(--navy);width:54px;height:54px;border-radius:50%;border:none;font-size:1.25rem;cursor:pointer;box-shadow:0 4px 20px rgba(184,149,90,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+    .hotline-float{position:fixed;bottom:24px;right:24px;z-index:200;background:var(--gold);color:var(--navy);width:52px;height:52px;border-radius:50%;border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 20px rgba(184,149,90,.45);display:flex;align-items:center;justify-content:center;transition:transform .2s;text-decoration:none}
     .hotline-float:hover{transform:scale(1.1)}
-    .hotline-tooltip{position:absolute;right:64px;bottom:50%;transform:translateY(50%);background:var(--navy);color:var(--pearl);font-family:system-ui,sans-serif;font-size:.74rem;padding:7px 13px;border-radius:2px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+    .hotline-tooltip{position:absolute;right:60px;bottom:50%;transform:translateY(50%);background:var(--navy);color:var(--pearl);font-family:system-ui,sans-serif;font-size:.72rem;padding:6px 12px;border-radius:2px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
     .hotline-float:hover .hotline-tooltip{opacity:1}
 
     .gold-rule{display:flex;align-items:center;justify-content:center;gap:14px;padding:0 48px}
@@ -250,61 +248,54 @@
     .gold-rule .diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:.55}
 
     @media(max-width:900px){
+      .topbar{padding:7px 16px}
+      .topbar-phone-num{font-size:1.15rem}
       nav{padding:10px 16px}.nav-links{display:none}
       .nav-cta{padding:8px 14px;font-size:.68rem}
       section,.cremation-section,.testimonials,.review-form-section{padding:48px 16px}
-      .about-inner,.cremation-inner,.contact-inner{grid-template-columns:1fr;gap:28px}
+      .about-inner,.cremation-inner{grid-template-columns:1fr;gap:28px}
+      .contact-inner{max-width:100%}
       .candle-wrap{display:none}
-      .services-grid,.pkg-grid,.testi-grid,.why-grid{grid-template-columns:1fr}
+      .services-grid,.pkg-grid,.why-grid,.monuments-grid{grid-template-columns:1fr}
+      .testi-grid{grid-template-columns:1fr}
       .promise-grid{grid-template-columns:1fr 1fr}
-      .promise-item{border-right:none;border-bottom:1px solid rgba(184,149,90,.12);padding:12px 0}
-      .promise-band{padding:22px 16px}
-      footer{flex-direction:column;text-align:center;padding:24px 16px;gap:14px}
-      .footer-links{flex-wrap:wrap;justify-content:center;gap:14px}
-      .form-row,.rf-row{grid-template-columns:1fr}
+      .promise-item{border-right:none;border-bottom:1px solid rgba(184,149,90,.12);padding:11px 0}
+      .promise-band{padding:20px 16px}
+      footer{flex-direction:column;text-align:center;padding:22px 16px;gap:12px}
+      .rf-row{grid-template-columns:1fr}
       .pkg-card.featured{transform:none}
       .gold-rule{padding:0 16px}
       .hero-logo-wrap{flex-direction:column;gap:10px;text-align:center}
       .hero-logo-text .hl-name{font-size:2rem}
-      .hero-logo-text .hl-sub{font-size:.62rem}
-      h1{font-size:clamp(1.8rem,8vw,3rem)}
-      .hero-sub{font-size:.88rem}
+      h1{font-size:clamp(1.8rem,8vw,2.8rem)}
       .hero-actions{flex-direction:column;align-items:center}
-      .btn-primary,.btn-secondary{width:100%;max-width:320px;text-align:center}
-      .hero-badges{gap:12px}
-      .hero-badge{font-size:.65rem}
-      .hero{min-height:auto;padding:100px 16px 60px}
-      .banner-img{max-height:220px;object-position:center 20%}
-      .banner-caption{padding:14px 16px 18px}
-      .banner-caption-text{font-size:.72rem;letter-spacing:.12em}
-      .stat-box{padding:20px 12px}
-      .stat-num{font-size:1.6rem}
-      .service-card{padding:26px 20px}
-      .pkg-card{padding:30px 20px}
-      .testi-card{padding:22px 18px}
-      .about-stats{gap:10px}
-      h2{font-size:clamp(1.4rem,6vw,2rem)}
-      .cremation-section h2{font-size:clamp(1.4rem,6vw,2rem)}
-      .price-num{font-size:1.8rem}
-      .why-item{padding:18px 14px}
-      .contact-form,.contact-detail{gap:10px}
-      .hotline-float{width:46px;height:46px;font-size:1.1rem;bottom:18px;right:18px}
+      .btn-primary,.btn-secondary{width:100%;max-width:300px;text-align:center}
+      .hero-phone-big a{font-size:1.45rem}
+      .hero{padding:70px 16px 50px;min-height:auto}
+      .social-bar{padding:20px 16px;gap:12px}
+      .contact-phone-big{padding:20px 18px}
+      .contact-phone-big a{font-size:1.5rem}
+      .monument-img{height:180px}
     }
     @media(max-width:480px){
       .promise-grid{grid-template-columns:1fr}
       .about-stats{grid-template-columns:1fr 1fr}
-      .testi-grid{grid-template-columns:1fr}
-      nav{padding:8px 12px}
-      .logo-name{font-size:1.1rem;letter-spacing:.14em}
-      .logo-sub{font-size:.52rem}
-      .nav-logo-dove{font-size:1.6rem}
+      .logo-name{font-size:1.1rem}.logo-sub{font-size:.52rem}
+      .topbar-phone-num{font-size:1rem}
     }
     @media(prefers-reduced-motion:reduce){.ca-flame{animation:none}.hero-content{animation:none;opacity:1}}
   </style>
 </head>
 <body>
 
-
+<!-- TOP BAR -->
+<div class="topbar">
+  <a class="topbar-phone" href="tel:+380933131495">
+    <span class="topbar-label">Цілодобово:</span>
+    <span class="topbar-phone-icon">📞</span>
+    <span class="topbar-phone-num">093 313-14-95</span>
+  </a>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -318,32 +309,15 @@
   <ul class="nav-links">
     <li><a href="#about">Про нас</a></li>
     <li><a href="#services">Послуги</a></li>
-    <li><a href="#cremation">Кремація</a></li>
     <li><a href="#packages">Пакети</a></li>
+    <li><a href="#monuments">Пам'ятники</a></li>
     <li><a href="#reviews">Відгуки</a></li>
     <li><a href="#contact">Контакти</a></li>
   </ul>
-  <button class="nav-cta" onclick="window.location.href='tel:+380933131495'">📞 Зателефонувати</button>
+  <a class="nav-cta" href="tel:+380933131495">📞 Зателефонувати</a>
 </nav>
 
-<!-- BANNER IMAGE SECTION — TOP -->
-<div class="banner-section" id="bannerSection" style="padding-top:72px">
-  <div class="banner-upload-wrap" id="bannerWrap">
-    <img class="banner-img hidden" id="bannerImg" alt="Небеса">
-    <div class="banner-placeholder" id="bannerPlaceholder">
-      <div class="banner-placeholder-text">Завантажте картинку агенції</div>
-      <label class="banner-upload-btn">
-        🖼 Вибрати зображення
-        <input type="file" accept="image/*" style="display:none" onchange="loadBanner(this)">
-      </label>
-    </div>
-    <label class="banner-change-btn">
-      Змінити
-      <input type="file" accept="image/*" style="display:none" onchange="loadBanner(this)">
-    </label>
-  </div>
-  
-</div>
+
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -357,12 +331,15 @@
     </div>
     <div class="hero-divider"><span>Дніпро · Вся Україна</span></div>
     <h1>З повагою<br>у найважчу <em>мить</em></h1>
-    <p class="hero-sub">Допомагаємо родинам у найскладніші моменти — з турботою, гідністю та людяністю. Беремо на себе всі клопоти, щоб ви могли бути поруч з близькими.</p>
+    <p class="hero-sub">Допомагаємо родинам у найскладніші моменти — з турботою, гідністю та людяністю.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="window.location.href='tel:+380933131495'">Отримати допомогу зараз</button>
-      <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Наші послуги</button>
+      <a class="btn-primary" href="tel:+380933131495">📞 Зателефонувати зараз</a>
+      <a class="btn-secondary" href="#services">Наші послуги</a>
     </div>
-    <p class="hero-phone">Цілодобова лінія: <a href="tel:+380933131495">093 313-14-95</a></p>
+    <div class="hero-phone-big">
+      <span class="ph-label">Цілодобова лінія</span>
+      <a href="tel:+380933131495">📞 093 313-14-95</a>
+    </div>
     <div class="hero-badges">
       <span class="hero-badge">Цілодобово 24/7</span>
       <span class="hero-badge">Безкоштовна консультація</span>
@@ -375,7 +352,7 @@
 <div class="promise-band">
   <div class="promise-grid">
     <div class="promise-item"><div class="promise-icon">🕐</div><div class="promise-text"><strong>Цілодобово 24/7</strong><span>Приймаємо дзвінки будь-якої години</span></div></div>
-    <div class="promise-item"><div class="promise-icon">💬</div><div class="promise-text"><strong>Безкоштовна консультація</strong><span>Відповімо на всі запитання без оплати</span></div></div>
+    <div class="promise-item"><div class="promise-icon">💬</div><div class="promise-text"><strong>Безкоштовна консультація</strong><span>Відповімо на всі запитання</span></div></div>
     <div class="promise-item"><div class="promise-icon">🤝</div><div class="promise-text"><strong>Особистий куратор</strong><span>Один спеціаліст від початку до кінця</span></div></div>
     <div class="promise-item"><div class="promise-icon">🇺🇦</div><div class="promise-text"><strong>Дніпро · Вся Україна</strong><span>Виїзд в будь-яке місто</span></div></div>
   </div>
@@ -399,7 +376,7 @@
   </div>
 </section>
 
-<div style="background:#fff;padding:26px 0"><div class="gold-rule"><div class="diamond"></div></div></div>
+<div style="background:#fff;padding:22px 0"><div class="gold-rule"><div class="diamond"></div></div></div>
 
 <!-- SERVICES -->
 <section class="services" id="services">
@@ -414,12 +391,14 @@
     <div class="service-card"><span class="service-icon">🍽️</span><h3>Поминальні обіди</h3><p>Організація застіль після церемонії для вшанування пам'яті у колі рідних.</p></div>
     <div class="service-card"><span class="service-icon">📜</span><h3>Допомога з документами</h3><p>Оформлення всіх необхідних документів без зайвих труднощів для родини.</p></div>
     <div class="service-card"><span class="service-icon">⛪</span><h3>Відспівування</h3><p>У храмі, морзі або біля будинку — з урахуванням усіх побажань родини.</p></div>
-    <div class="service-card"><span class="service-icon">🔥</span><h3>Кремація від 15 000 грн</h3><p>З дотриманням усіх норм та традицій. Широкий вибір урн і варіантів поховання праху.</p></div>
+    <div class="service-card"><span class="service-icon">🔥</span><h3>Кремація від 15 000 грн</h3><p>З дотриманням усіх норм та традицій. Широкий вибір варіантів поховання праху.</p></div>
     <div class="service-card"><span class="service-icon">⚰️</span><h3>Широкий вибір трун</h3><p>Різноманітні моделі та дизайни, щоб кожна родина могла обрати відповідно до потреб.</p></div>
-    <div class="service-card"><span class="service-icon">🌿</span><h3>Поминальні вінки</h3><p>Великий асортимент вінків з цінами. <a href="https://t.me/vinokrityalka" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;white-space:nowrap">📲 Переглянути в Telegram →</a></p></div>
-    <div class="service-card"><span class="service-icon">👥</span><h3>Бригада професіоналів</h3><p>Досвідчені спеціалісти з максимальною повагою та увагою до кожної родини.</p></div>
+    <div class="service-card"><span class="service-icon">🌿</span><h3>Поминальні вінки</h3><p>Великий асортимент вінків з цінами. <a href="https://t.me/vinokrityalka" target="_blank">📲 Переглянути в Telegram →</a></p></div>
+    <div class="service-card"><span class="service-icon">🪨</span><h3>Встановлення пам'ятників</h3><p>Виготовлення та встановлення пам'ятників з граніту. Гравіювання, благоустрій.</p></div>
   </div>
 </section>
+
+
 
 <!-- CREMATION -->
 <section class="cremation-section" id="cremation">
@@ -432,14 +411,14 @@
         <span class="price-num">15 000</span>
         <span class="price-currency">грн</span>
       </div>
-      <p class="section-lead" style="margin-bottom:28px">Організовуємо повний цикл кремації — від підготовки до поховання праху. Все включено, без прихованих доплат.</p>
+      <p class="section-lead" style="margin-bottom:24px">Організовуємо повний цикл кремації — від підготовки до поховання праху. Все включено, без прихованих доплат.</p>
       <div class="cremation-steps">
-        <div class="cr-step"><span class="cr-num">01</span><div class="cr-info"><strong>Консультація та оформлення</strong><span>Безкоштовно. Відповідаємо на всі запитання, підбираємо оптимальний пакет.</span></div></div>
-        <div class="cr-step"><span class="cr-num">02</span><div class="cr-info"><strong>Підготовка та прощання</strong><span>Організовуємо прощальну церемонію відповідно до побажань родини.</span></div></div>
-        <div class="cr-step"><span class="cr-num">03</span><div class="cr-info"><strong>Кремація</strong><span>На сертифікованому обладнанні. Документи на прах видаємо родині.</span></div></div>
-        <div class="cr-step"><span class="cr-num">04</span><div class="cr-info"><strong>Поховання праху або колумбарій</strong><span>Урна на вибір. Допомагаємо з місцем поховання або колумбарієм.</span></div></div>
+        <div class="cr-step"><span class="cr-num">01</span><div class="cr-info"><strong>Консультація та оформлення</strong><span>Безкоштовно, цілодобово.</span></div></div>
+        <div class="cr-step"><span class="cr-num">02</span><div class="cr-info"><strong>Підготовка та прощання</strong><span>Прощальна церемонія за побажаннями родини.</span></div></div>
+        <div class="cr-step"><span class="cr-num">03</span><div class="cr-info"><strong>Кремація</strong><span>На сертифікованому обладнанні.</span></div></div>
+        <div class="cr-step"><span class="cr-num">04</span><div class="cr-info"><strong>Поховання праху або колумбарій</strong><span>Допомагаємо з вибором місця.</span></div></div>
       </div>
-      <button class="btn-primary" style="margin-top:32px" onclick="window.location.href='tel:+380933131495'">Дізнатися деталі</button>
+      <a class="btn-primary" style="margin-top:28px;display:inline-block" href="tel:+380933131495">📞 Дізнатися деталі</a>
     </div>
     <div class="candle-wrap">
       <div class="candle-art">
@@ -452,7 +431,7 @@
   </div>
 </section>
 
-<div style="background:var(--cream);padding:26px 0"><div class="gold-rule"><div class="diamond"></div></div></div>
+<div style="background:var(--cream);padding:22px 0"><div class="gold-rule"><div class="diamond"></div></div></div>
 
 <!-- WHY -->
 <section class="why">
@@ -460,13 +439,12 @@
     <div class="why-header">
       <span class="section-tag">Чому обирають нас</span>
       <h2>Довіра, яку підтверджує досвід</h2>
-      <p class="section-lead">За роки роботи ми допомогли тисячам родин по всій Україні.</p>
     </div>
     <div class="why-grid">
-      <div class="why-item"><div class="why-item-icon">🕐</div><div><h3>Цілодобово без вихідних</h3><p>Виїзд спеціаліста у будь-який час. Ніхто не залишиться без допомоги — вдень чи вночі.</p></div></div>
-      <div class="why-item"><div class="why-item-icon">💬</div><div><h3>Безкоштовна консультація</h3><p>Відповідаємо на всі запитання без будь-якої оплати. Дзвоніть — ми поруч.</p></div></div>
-      <div class="why-item"><div class="why-item-icon">💰</div><div><h3>Прозорі ціни</h3><p>Жодних прихованих доплат. Вартість фіксується в договорі до початку робіт.</p></div></div>
-      <div class="why-item"><div class="why-item-icon">🤝</div><div><h3>Індивідуальний підхід</h3><p>Враховуємо традиції, побажання та потреби кожної родини. Із повагою до кожного.</p></div></div>
+      <div class="why-item"><div class="why-item-icon">🕐</div><div><h3>Цілодобово без вихідних</h3><p>Виїзд спеціаліста у будь-який час.</p></div></div>
+      <div class="why-item"><div class="why-item-icon">💬</div><div><h3>Безкоштовна консультація</h3><p>Відповідаємо на всі запитання без оплати.</p></div></div>
+      <div class="why-item"><div class="why-item-icon">💰</div><div><h3>Прозорі ціни</h3><p>Жодних прихованих доплат. Вартість фіксується в договорі.</p></div></div>
+      <div class="why-item"><div class="why-item-icon">🤝</div><div><h3>Індивідуальний підхід</h3><p>Враховуємо традиції та побажання кожної родини.</p></div></div>
     </div>
   </div>
 </section>
@@ -476,11 +454,9 @@
   <div class="packages-header">
     <span class="section-tag">Пакети послуг</span>
     <h2>Оберіть зручний варіант</h2>
-    <p class="section-lead">Готові пакети з фіксованою ціною. Або зателефонуйте — складемо індивідуальну пропозицію.</p>
+    <p class="section-lead">Фіксована ціна, все включено. Зателефонуйте — розкажемо детально.</p>
   </div>
   <div class="pkg-grid">
-
-    <!-- STANDARD -->
     <div class="pkg-card">
       <span class="pkg-name">Базовий</span>
       <h3>Стандарт</h3>
@@ -498,27 +474,22 @@
         <li>Бригада</li>
         <li>Катафалк</li>
       </ul>
-      <a href="tel:+380933131495" class="pkg-btn pkg-btn-outline" style="display:block;text-align:center;text-decoration:none">📞 Дізнатися вартість</a>
+      <a href="tel:+380933131495" class="pkg-btn pkg-btn-outline">📞 Дізнатися вартість</a>
     </div>
-
-    <!-- COMFORT -->
     <div class="pkg-card featured">
       <div class="pkg-badge">Популярний вибір</div>
       <span class="pkg-name">Комфорт</span>
       <h3>Повний пакет</h3>
-      <p class="pkg-desc">Повний супровід під ключ з розширеним сервісом</p>
+      <p class="pkg-desc">Повний супровід під ключ</p>
       <div class="pkg-price">від 15 000 <span>грн</span></div>
       <ul class="pkg-features">
         <li>Все з базового пакету</li>
-        <li>Квіткове оформлення</li>
         <li>Особистий куратор 24/7</li>
         <li>Організація поминального обіду</li>
         <li>Допомога з документами</li>
       </ul>
-      <a href="tel:+380933131495" class="pkg-btn pkg-btn-gold" style="display:block;text-align:center;text-decoration:none">📞 Обрати пакет</a>
+      <a href="tel:+380933131495" class="pkg-btn pkg-btn-gold">📞 Обрати пакет</a>
     </div>
-
-    <!-- CREMATION -->
     <div class="pkg-card">
       <span class="pkg-name">Кремація</span>
       <h3>Кремація під ключ</h3>
@@ -528,13 +499,11 @@
         <li>Підготовка до кремації</li>
         <li>Прощальна церемонія</li>
         <li>Кремація на сертиф. обладнанні</li>
-        <li>Урна на вибір з каталогу</li>
         <li>Поховання праху або колумбарій</li>
         <li>Оформлення документів</li>
       </ul>
-      <a href="tel:+380933131495" class="pkg-btn pkg-btn-outline" style="display:block;text-align:center;text-decoration:none">📞 Дізнатися вартість</a>
+      <a href="tel:+380933131495" class="pkg-btn pkg-btn-outline">📞 Дізнатися вартість</a>
     </div>
-
   </div>
 </section>
 
@@ -543,32 +512,31 @@
   <div class="testi-header">
     <span class="section-tag" style="color:var(--gold)">Відгуки</span>
     <h2>Слова тих, кому ми допомогли</h2>
-    <p style="font-family:system-ui,sans-serif;font-size:.88rem;color:rgba(232,228,220,.38);margin-top:8px">Відгуки реальних клієнтів з Дніпра</p>
   </div>
   <div class="testi-grid" id="testiGrid">
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <div class="testi-quote">"</div>
       <p>Позвонили в 4 утра — ответили сразу. Приехали быстро, всё объяснили. Спасибо за человечность в такой момент.</p>
-      <div class="testi-author"><div class="testi-avatar">СК</div><div><div class="testi-name">Сергій К.</div><div class="testi-meta">Дніпро, 2025</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">С</div><div><div class="testi-name">Сергій</div><div class="testi-meta">Дніпро, 2025</div></div></div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <div class="testi-quote">"</div>
       <p>Взяли на себе всі документи та організацію. Ціна відповідає якості. Дякую хлопцям за роботу.</p>
-      <div class="testi-author"><div class="testi-avatar">ОМ</div><div><div class="testi-name">Оксана М.</div><div class="testi-meta">Дніпро, 2024</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">О</div><div><div class="testi-name">Оксана</div><div class="testi-meta">Дніпро, 2024</div></div></div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <div class="testi-quote">"</div>
       <p>Обирали кремацію. Все пройшло гідно, без зайвих нервів. Рекомендую.</p>
-      <div class="testi-author"><div class="testi-avatar">ВП</div><div><div class="testi-name">Василь П.</div><div class="testi-meta">Дніпро, 2025</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">В</div><div><div class="testi-name">Василь</div><div class="testi-meta">Дніпро, 2025</div></div></div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <div class="testi-quote">"</div>
       <p>Всё чётко, без лишних вопросов. Катафалк, бригада, отпевание — всё в одном месте. Цена честная.</p>
-      <div class="testi-author"><div class="testi-avatar">АГ</div><div><div class="testi-name">Андрій Г.</div><div class="testi-meta">Дніпро, 2024</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">А</div><div><div class="testi-name">Андрій</div><div class="testi-meta">Дніпро, 2024</div></div></div>
     </div>
   </div>
 </section>
@@ -578,131 +546,110 @@
   <div class="review-form-inner">
     <span class="section-tag" style="color:var(--gold)">Залишити відгук</span>
     <h3>Поділіться своїм досвідом</h3>
-    <p class="rfs-lead">Ваш відгук допоможе іншим родинам знайти підтримку у важку хвилину. Після перевірки він буде опублікований на сайті.</p>
+    <p class="rfs-lead">Після перевірки відгук буде опублікований на сайті.</p>
     <div class="rf-row">
-      <div class="rf-group"><label>Ім'я *</label><input type="text" id="rfName" placeholder="Ваше ім'я" maxlength="60"></div>
-      <div class="rf-group"><label>Прізвище *</label><input type="text" id="rfSurname" placeholder="Ваше прізвище" maxlength="60"></div>
+      <div class="rf-group"><label>Ім'я *</label><input type="text" id="rfName" placeholder="Ваше ім'я" maxlength="40"></div>
+      <div class="rf-group"><label>Місто</label><input type="text" id="rfCity" placeholder="Дніпро" maxlength="40"></div>
     </div>
-    <div class="rf-group"><label>Місто</label><input type="text" id="rfCity" placeholder="Наприклад: Дніпро" maxlength="60"></div>
     <div class="rf-group" style="margin-bottom:6px"><label>Оцінка *</label></div>
     <div class="rf-stars-row" id="rfStars">
-      <span class="rf-star" data-v="1">★</span>
-      <span class="rf-star" data-v="2">★</span>
-      <span class="rf-star" data-v="3">★</span>
-      <span class="rf-star" data-v="4">★</span>
+      <span class="rf-star" data-v="1">★</span><span class="rf-star" data-v="2">★</span>
+      <span class="rf-star" data-v="3">★</span><span class="rf-star" data-v="4">★</span>
       <span class="rf-star" data-v="5">★</span>
     </div>
-    <div class="rf-group"><label>Відгук *</label><textarea id="rfText" placeholder="Розкажіть про свій досвід звернення до агенції «Небеса»..." maxlength="800"></textarea></div>
+    <div class="rf-group"><label>Відгук *</label><textarea id="rfText" placeholder="Ваш досвід..." maxlength="600"></textarea></div>
     <button class="rf-submit" onclick="submitReview()">Надіслати відгук</button>
-    <p class="rf-note">Усі відгуки проходять модерацію перед публікацією. Дякуємо за довіру.</p>
-    <div class="rf-success" id="rfSuccess">✓ Дякуємо! Ваш відгук успішно надіслано та очікує на публікацію.</div>
+    <p class="rf-note">Усі відгуки проходять модерацію.</p>
+    <div class="rf-success" id="rfSuccess">✓ Дякуємо! Відгук надіслано на модерацію.</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="contact-info">
-      <span class="section-tag">Зв'язатися з нами</span>
-      <h2>Ми поруч,<br>коли потрібно</h2>
-      <p class="section-lead">Зателефонуйте або залиште заявку — відповімо протягом кількох хвилин у будь-який час доби.</p>
-      <div class="contact-detail">
-        <div class="cd-item"><span class="cd-icon">📞</span><div><strong>Телефон</strong><a href="tel:+380933131495">093 313-14-95</a><br><span style="font-size:.73rem;color:#ccc">Безкоштовно, цілодобово</span></div></div>
-        <div class="cd-item"><span class="cd-icon">📍</span><div><strong>Адреса офісу</strong><a href="https://maps.app.goo.gl/UUUyomkMbBghkoqE7?g_st=ic" target="_blank">Відкрити на Google Maps →</a></div></div>
-        <div class="cd-item"><span class="cd-icon">🇺🇦</span><div><strong>Зона обслуговування</strong><span>Вся Україна</span></div></div>
-        <div class="cd-item"><span class="cd-icon">📸</span><div><strong>Instagram</strong><a href="https://www.instagram.com/nebesa_dp?igsh=MWh3aGVwaWIyczQ0dg==" target="_blank">@nebesa_dp →</a></div></div>
-      </div>
-      <div class="free-consult"><span>💬</span>Безкоштовна консультація — зателефонуйте зараз, і ми відповімо на всі запитання.</div>
+    <span class="section-tag">Контакти</span>
+    <h2>Зв'яжіться з нами</h2>
+    <div class="contact-detail">
+      <div class="cd-item"><span class="cd-icon">📍</span><div><strong>Адреса</strong><a href="https://maps.app.goo.gl/UUUyomkMbBghkoqE7?g_st=ic" target="_blank">Відкрити на Google Maps →</a></div></div>
+      <div class="cd-item"><span class="cd-icon">🇺🇦</span><div><strong>Зона обслуговування</strong><span>Вся Україна</span></div></div>
+      <div class="cd-item"><span class="cd-icon">📸</span><div><strong>Instagram</strong><a href="https://www.instagram.com/nebesa_dp?igsh=MWh3aGVwaWIyczQ0dg==" target="_blank">@nebesa_dp →</a></div></div>
+      <div class="cd-item"><span class="cd-icon">📲</span><div><strong>Telegram — вінки в наявності</strong><a href="https://t.me/vinokrityalka" target="_blank">t.me/vinokrityalka →</a></div></div>
     </div>
-    <div class="contact-form">
-      <div class="form-row">
-        <div class="form-group"><label>Ваше ім'я</label><input type="text" placeholder="Іван Іваненко"></div>
-        <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+38 (093) ___-__-__"></div>
+    <div class="contact-phone-big">
+      <div>
+        <span class="cpb-label">Цілодобово 24/7 — безкоштовно</span>
+        <a href="tel:+380933131495">📞 093 313-14-95</a>
       </div>
-      <div class="form-group"><label>Потрібна послуга</label>
-        <select>
-          <option value="">Оберіть послугу</option>
-          <option>Пакет «Стандарт» від 12 500 грн</option>
-          <option>Пакет «Комфорт» від 15 000 грн</option>
-          <option>Кремація від 15 000 грн</option>
-          <option>Транспортування</option>
-          <option>Поминальний обід</option>
-          <option>Відспівування</option>
-          <option>Інше / Консультація</option>
-        </select>
-      </div>
-      <div class="form-group"><label>Повідомлення (необов'язково)</label><textarea placeholder="Розкажіть, чим ми можемо допомогти..."></textarea></div>
-      <p class="form-note">Передзвонимо протягом 5–10 хвилин. Уся інформація суворо конфіденційна.</p>
-      <button class="form-submit">Надіслати заявку</button>
     </div>
   </div>
 </section>
 
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <a class="social-link" href="https://maps.app.goo.gl/UUUyomkMbBghkoqE7?g_st=ic" target="_blank">📍 Google Maps</a>
+  <a class="social-link" href="https://www.instagram.com/nebesa_dp?igsh=MWh3aGVwaWIyczQ0dg==" target="_blank">📸 Instagram</a>
+  <a class="social-link" href="https://t.me/vinokrityalka" target="_blank">📲 Telegram вінки</a>
+  <a class="social-link" href="tel:+380933131495">📞 093 313-14-95</a>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <span style="font-size:1.6rem;opacity:.45">🕊️</span>
+    <span style="font-size:1.4rem;opacity:.4">🕊️</span>
     <span class="footer-logo-text">НЕБЕСА</span>
   </div>
-  <div class="footer-copy">© 2009–2026 Ритуальна агенція «Небеса»<br>м. Дніпро · Послуги по всій Україні</div>
-  <div class="footer-links">
-    <a href="https://maps.app.goo.gl/UUUyomkMbBghkoqE7?g_st=ic" target="_blank">📍 Google Maps</a>
-    <a href="https://www.instagram.com/nebesa_dp?igsh=MWh3aGVwaWIyczQ0dg==" target="_blank">📸 Instagram</a>
-    <a href="https://t.me/vinokrityalka" target="_blank">📲 Telegram вінки</a>
-  </div>
+  <div class="footer-copy">© 2009–2026 Ритуальна агенція «Небеса» · Дніпро</div>
+  <div style="font-family:system-ui,sans-serif;font-size:.7rem;color:rgba(232,228,220,.16)">Послуги по всій Україні</div>
 </footer>
 
-<button class="hotline-float" onclick="window.location.href='tel:+380933131495'">
-  <div class="hotline-tooltip">Гаряча лінія 24/7</div>📞
-</button>
+<a class="hotline-float" href="tel:+380933131495">
+  <div class="hotline-tooltip">Подзвонити</div>📞
+</a>
 
 <script>
-  function loadBanner(input) {
-    if (!input.files[0]) return;
-    const r = new FileReader();
-    r.onload = e => {
-      const img = document.getElementById('bannerImg');
-      const ph  = document.getElementById('bannerPlaceholder');
-      img.src = e.target.result;
-      img.classList.remove('hidden');
-      ph.classList.add('hidden');
-    };
-    r.readAsDataURL(input.files[0]);
-  }
-
-  let selectedStars = 0;
+  let sel = 0;
   const stars = document.querySelectorAll('.rf-star');
   stars.forEach(s => {
     s.addEventListener('mouseenter', () => hl(+s.dataset.v));
-    s.addEventListener('mouseleave', () => hl(selectedStars));
-    s.addEventListener('click', () => { selectedStars = +s.dataset.v; hl(selectedStars); });
+    s.addEventListener('mouseleave', () => hl(sel));
+    s.addEventListener('click', () => { sel = +s.dataset.v; hl(sel); });
   });
   function hl(n) { stars.forEach(s => s.classList.toggle('active', +s.dataset.v <= n)); }
 
   function submitReview() {
-    const name    = document.getElementById('rfName').value.trim();
-    const surname = document.getElementById('rfSurname').value.trim();
-    const city    = document.getElementById('rfCity').value.trim() || 'Дніпро';
-    const text    = document.getElementById('rfText').value.trim();
-    if (!name || !surname) { alert('Будь ласка, вкажіть ім\'я та прізвище.'); return; }
-    if (!selectedStars)    { alert('Будь ласка, оберіть оцінку.'); return; }
-    if (text.length < 20)  { alert('Будь ласка, напишіть детальніший відгук (мінімум 20 символів).'); return; }
-
-    const initials = (name[0] + surname[0]).toUpperCase();
-    const starsStr = '★'.repeat(selectedStars) + '☆'.repeat(5 - selectedStars);
-    const year = new Date().getFullYear();
+    const name = document.getElementById('rfName').value.trim();
+    const city = document.getElementById('rfCity').value.trim() || 'Дніпро';
+    const text = document.getElementById('rfText').value.trim();
+    if (!name) { alert('Вкажіть ваше ім\'я.'); return; }
+    if (!sel)  { alert('Оберіть оцінку.'); return; }
+    if (text.length < 15) { alert('Напишіть коротший відгук (мін. 15 символів).'); return; }
     const card = document.createElement('div');
     card.className = 'testi-card';
-    card.style.cssText = 'animation:fadeUp .5s ease forwards;opacity:0;border-color:rgba(184,149,90,.35)';
-    card.innerHTML = `<div class="testi-stars">${starsStr}</div><div class="testi-quote">"</div><p>${esc(text)}</p><div class="testi-author"><div class="testi-avatar">${initials}</div><div><div class="testi-name">${esc(name)} ${esc(surname)}</div><div class="testi-meta">${esc(city)}, ${year} · Новий відгук</div></div></div>`;
-    const grid = document.getElementById('testiGrid');
-    grid.insertBefore(card, grid.firstChild);
+    card.style.cssText = 'animation:fadeUp .5s ease forwards;opacity:0;border-color:rgba(184,149,90,.3)';
+    card.innerHTML = `<div class="testi-stars">${'★'.repeat(sel)}${'☆'.repeat(5-sel)}</div><div class="testi-quote">"</div><p>${esc(text)}</p><div class="testi-author"><div class="testi-avatar">${name[0].toUpperCase()}</div><div><div class="testi-name">${esc(name)}</div><div class="testi-meta">${esc(city)}, ${new Date().getFullYear()}</div></div></div>`;
+    document.getElementById('testiGrid').insertBefore(card, document.getElementById('testiGrid').firstChild);
     document.getElementById('rfSuccess').style.display = 'block';
-    ['rfName','rfSurname','rfCity','rfText'].forEach(id => document.getElementById(id).value = '');
-    selectedStars = 0; hl(0);
+    ['rfName','rfCity','rfText'].forEach(id => document.getElementById(id).value = '');
+    sel = 0; hl(0);
     setTimeout(() => card.scrollIntoView({behavior:'smooth',block:'center'}), 200);
   }
-  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // Load uploaded banner image via FileReader from window if available
+  (function(){
+    const img = document.getElementById('heroBanner');
+    // Try to load from parent frame uploaded file blob if available
+    // Fallback: use a beautiful placeholder matching the brand
+    img.onerror = function(){
+      img.style.display='none';
+      document.getElementById('heroBanner').parentElement.style.minHeight='0';
+    };
+    // The image is embedded via the artifact system — set src to the uploaded file
+    // Since we can't directly embed the base64 here, we use window.uploadedBanner if injected
+    if(window.uploadedBannerSrc){
+      img.src = window.uploadedBannerSrc;
+    }
+  })();
 </script>
 </body>
 </html>
